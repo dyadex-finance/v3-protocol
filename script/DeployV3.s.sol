@@ -168,7 +168,7 @@ contract DeployV3 is Script {
         bytes32 nativeCurrencyLabelBytes,
         address ownerAddress,
         address v2CoreFactoryAddress
-    ) internal view {
+    ) internal pure {
         console.log("\n=== DeployV3 Summary ===");
         console.log("v3CoreFactory:              ", state.v3CoreFactoryAddress);
         console.log("multicall2:                 ", state.multicall2Address);
