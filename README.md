@@ -1,66 +1,63 @@
-## Foundry
+# Uniswap V3 Protocol (Foundry)
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This workspace contains a Foundry-based deployment flow for Uniswap V3 core and periphery contracts.
 
-Foundry consists of:
+## Prerequisites
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- Foundry installed
+- Local chain for testing (Anvil)
 
-## Documentation
+## Build
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```sh
+forge build
 ```
 
-### Test
+## Test
 
-```shell
-$ forge test
+```sh
+forge test
 ```
 
-### Format
+## Local Deployment (DeployV3)
 
-```shell
-$ forge fmt
+Start Anvil in one terminal:
+
+```sh
+anvil
 ```
 
-### Gas Snapshots
+Run deployment in another terminal:
 
-```shell
-$ forge snapshot
+```sh
+PRIVATE_KEY="<private_key>" \
+WETH9_ADDRESS="<weth9_address>" \
+NATIVE_CURRENCY_LABEL="ETH" \
+V2_CORE_FACTORY_ADDRESS="<v2_factory_address>" \
+OWNER_ADDRESS="<owner_address>" \
+forge script script/DeployV3.s.sol --broadcast --rpc-url http://127.0.0.1:8545 --skip-simulation
 ```
 
-### Anvil
+## Environment Variables
 
-```shell
-$ anvil
-```
+- `PRIVATE_KEY`: EOA private key used for broadcasting transactions.
+- `WETH9_ADDRESS`: WETH9 contract address used by periphery contracts.
+- `NATIVE_CURRENCY_LABEL`: Native currency label as a string (for example `ETH`).
+- `V2_CORE_FACTORY_ADDRESS`: V2 factory address used for metadata/logging context.
+- `OWNER_ADDRESS`: Final owner for UniswapV3Factory and ProxyAdmin ownership transfers.
 
-### Deploy
+Notes:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+- `NATIVE_CURRENCY_LABEL` is converted to `bytes32` inside `script/DeployV3.s.sol`.
+- Label must be between 1 and 32 bytes.
 
-### Cast
+## Deployment Outputs
 
-```shell
-$ cast <subcommand>
-```
+After a successful broadcast, Foundry writes output files to:
 
-### Help
+- `broadcast/DeployV3.s.sol/<chain_id>/run-latest.json`
+- `cache/DeployV3.s.sol/<chain_id>/run-latest.json`
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## Foundry Docs
+
+- https://book.getfoundry.sh/
