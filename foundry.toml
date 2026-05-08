@@ -4,7 +4,7 @@ out = "out"
 libs = ["lib"]
 evm_version = "istanbul"
 optimizer = true
-optimizer_runs = 1000
+optimizer_runs = 200
 bytecode_hash = "none"
 solc_version = "0.7.6"
 
