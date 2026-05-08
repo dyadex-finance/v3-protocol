@@ -1,9 +1,15 @@
 {
   "lib/@dyadex-finance/v3-core": {
-    "rev": "d0831dc6b8a318df3872b6d68f6de135c9f3ec29"
+    "tag": {
+      "name": "v1.0.0",
+      "rev": "e3589b192d0be27e100cd0daaf6c97204fdb1899"
+    }
   },
   "lib/@dyadex-finance/v3-periphery": {
-    "rev": "0682387198a24c7cd63566a2c58398533860a5d1"
+    "tag": {
+      "name": "v1.3.0",
+      "rev": "80f26c86c57b8a5e4b913f42844d4c8bd274d058"
+    }
   },
   "lib/base64.git": {
     "tag": {
@@ -13,8 +19,8 @@
   },
   "lib/forge-std": {
     "tag": {
-      "name": "v1.16.1",
-      "rev": "620536fa5277db4e3fd46772d5cbc1ea0696fb43"
+      "name": "v1.13.0",
+      "rev": "c29afdd40a82db50a3d3709d324416be50050e5e"
     }
   },
   "lib/openzeppelin-contracts.git": {
