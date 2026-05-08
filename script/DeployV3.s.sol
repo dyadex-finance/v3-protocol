@@ -42,7 +42,7 @@ contract DeployV3 is Script {
         address deployer = vm.addr(deployerPrivateKey);
 
         address weth9Address = vm.envAddress("WETH9_ADDRESS");
-        bytes32 nativeCurrencyLabelBytes = vm.envBytes32("NATIVE_CURRENCY_LABEL_BYTES");
+        bytes32 nativeCurrencyLabelBytes = _stringToBytes32(vm.envString("NATIVE_CURRENCY_LABEL"));
         address v2CoreFactoryAddress = vm.envAddress("V2_CORE_FACTORY_ADDRESS");
         address ownerAddress = vm.envAddress("OWNER_ADDRESS");
 
@@ -151,6 +151,16 @@ contract DeployV3 is Script {
 
         require(currentOwner == deployer, "ProxyAdmin.owner is not deployer");
         proxyAdmin.transferOwnership(ownerAddress);
+    }
+
+    function _stringToBytes32(string memory value) internal pure returns (bytes32 result) {
+        bytes memory raw = bytes(value);
+        require(raw.length > 0, "NATIVE_CURRENCY_LABEL is empty");
+        require(raw.length <= 32, "NATIVE_CURRENCY_LABEL exceeds 32 bytes");
+
+        assembly {
+            result := mload(add(value, 32))
+        }
     }
 
     function _logDeployment(
