@@ -1,0 +1,12 @@
+@uniswap/v2-core/contracts/=lib/v2-core.git/contracts/
+@uniswap/v3-core/contracts/=src/v3-core/
+@uniswap/v3-periphery/=src/v3-periphery/
+@uniswap/lib/=lib/uniswap-solidity-lib/
+@openzeppelin/contracts/=lib/openzeppelin-contracts.git/contracts/
+base64-sol/=lib/base64.git/
+@dyadex-finance/=lib/@dyadex-finance/
+base64.git/=lib/base64.git/
+forge-std/=lib/forge-std/src/
+openzeppelin-contracts.git/=lib/openzeppelin-contracts.git/contracts/
+uniswap-solidity-lib/=lib/uniswap-solidity-lib/contracts/
+v2-core.git/=lib/v2-core.git/contracts/

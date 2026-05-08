@@ -15,4 +15,6 @@ remappings = [
     "base64-sol=lib/base64.git",
 ]
 
+[lint]
+ignore = ["src/v3-core/**", "src/v3-periphery", "lib/**"]
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
