@@ -38,15 +38,14 @@ contract DeployV3 is Script {
     }
 
     function run() external returns (DeploymentState memory state) {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address deployer = vm.addr(deployerPrivateKey);
+        address deployer = msg.sender;
 
         address weth9Address = vm.envAddress("WETH9_ADDRESS");
         bytes32 nativeCurrencyLabelBytes = _stringToBytes32(vm.envString("NATIVE_CURRENCY_LABEL"));
         address v2CoreFactoryAddress = vm.envAddress("V2_CORE_FACTORY_ADDRESS");
         address ownerAddress = vm.envAddress("OWNER_ADDRESS");
 
-        vm.startBroadcast(deployerPrivateKey);
+        vm.startBroadcast();
 
         // 1) DEPLOY_V3_CORE_FACTORY
         UniswapV3Factory factory = new UniswapV3Factory();
